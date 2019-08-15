@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>张爽小仙女专用查天气网页</title>
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.8, maximum-scale=1.0, minimum-scale=1.0">
 	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -23,10 +24,18 @@
 			margin-top: 50px;
 			border: 1px solid #000;
 		}
+		#date{
+			display: none;
+			text-align: center;
+		}
 		.panel{
-			width: 700px;
+			/*width: 700px;*/
 			margin: 100px auto;
 
+		}
+		#panel-foot{
+			border-top: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
 		}
 		body{
 			background-color: hotpink;
@@ -40,29 +49,19 @@
 		th{
 			padding-left: 30px!important;
 			text-align: center;
+			font-size: 22px;
+			height: 60px;
 
 		}
 		tbody{
 			/*padding-left: 30px!important;*/
 		}
 		td{
-			font-size: 18px;
-			line-height: 50px!important;
+			font-size: 30px;
+			line-height: 70px!important;
 			padding-left: 30px!important;
 			text-align: center;
 		}
-		/*tr{
-			display: block;
-			height: 45px;
-			text-align: center;
-			line-height: 45px;
-		}*/
-		/*td{
-			display: inline-block;
-			height: 45px;
-			text-align: center;
-			line-height: 45px;
-		}*/
 	</style>
 </head>
 <body ng-app='Weather'>
@@ -81,10 +80,11 @@
 	<div class="panel panel-default" ng-controller='WeatherController' ng-cloak>
 		<!-- Default panel contents -->
 	 	<div class="panel-heading">
-	 		<h3 style="text-align: center;">♥张爽小仙女专用查天气网页♥</h3>
-	 		<h3>当前城市：{{forecast.province}}省{{forecast.city}}
+	 		<h1 style="text-align: center;">♥张爽小仙女专用查天气网页♥</h1>
+	 		<br>
+	 		<h2>当前城市：{{forecast.province}}省{{forecast.city}}
 	 		<br>查询时间：{{forecast.reporttime}}
-		 	</h3>
+		 	</h2>
 	 	</div>
 		<!-- Table -->
 	  	<table class="table">
@@ -105,6 +105,10 @@
 			</tr>
 			</tbody>
 	  	</table>
+	 	<div class="panel-heading" id="panel-foot">
+	 		<!-- <h2 id="date">在一起 : 173天10小时56分钟10秒</h2> -->
+	 		<h1 id="date">宝贝儿你回来啦~</h1>
+	 	</div>
 	</div>
 
 
@@ -129,6 +133,38 @@
 				$scope.dayCast = $scope.forecast.casts;//4个元素的数组
 			});
 		}]);
+	</script>
+	<script type="text/javascript">
+		var date = document.querySelector('#date');
+		date.style.display = 'block';
+		window.onload = setInterval('conTime()',1000);
+	    function conTime() {
+	        var today = new Date();
+	        var dayStart = new Date(2019, 1, 23, 8, 0, 0);
+	        var dayDiff = today - dayStart;//时间差的毫秒值
+	        //天
+	        var conDay = Math.floor(dayDiff / 3600 / 24 / 1000);
+	        //小时
+	        var conH = Math.floor(dayDiff % (3600 * 24 * 1000) / (1000 * 3600));
+	        //分钟
+	        var conMin = Math.floor(dayDiff % (3600 * 1000) / (1000 * 60));
+	        //秒
+	        var conSec = Math.floor(dayDiff % (60 * 1000) / 1000);
+	        conDay=checkTime(conDay);
+	        conH=checkTime(conH);
+	        conMin=checkTime(conMin);
+	        conSec=checkTime(conSec);
+	        var conTime = conDay + '天' + conH + '小时' + conMin + '分钟' + conSec + '秒';
+	        date.innerHTML = '在一起 : '+conTime;
+	        date.style.color='#FF4040';
+//        alert('111');
+	    }
+	    function checkTime(i)
+	    {
+	        if (i<10)
+	        {i="0" + i}
+	        return i
+	    }
 	</script>
 </body>
 </html>
