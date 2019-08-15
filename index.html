@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>张爽小仙女专用查天气网页</title>
-	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.8, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=1.0, minimum-scale=0.1">
 	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -30,7 +30,7 @@
 		}
 		.panel{
 			/*width: 700px;*/
-			margin: 100px auto;
+			margin: 10px auto;
 
 		}
 		#panel-foot{
@@ -62,21 +62,14 @@
 			padding-left: 30px!important;
 			text-align: center;
 		}
+		#toDevelope{
+			/*margin: 10px auto;*/
+			height: 1500px;
+			background: url('images/7.jpg') no-repeat;
+		}
 	</style>
 </head>
 <body ng-app='Weather'>
-<!-- 	<div ng-controller='WeatherController' id='main'>
-		<h1 ng-cloak>当前城市：{{forecast.province}}省{{forecast.city}}</h1>
-		<h1 ng-cloak>查询时间：{{forecast.reporttime}}</h1>
-		<table id="weatherData">
-			<tr ng-repeat='data in dayCast'>
-				<td>日期：{{data.date}}</td>
-				<td>白天：{{data.dayweather}}，{{data.daytemp}}℃</td>
-				<td>夜间：{{data.nightweather}}，{{data.nighttemp}}℃</td>
-			</tr>
-		</table>	
-	</div> -->
-	
 	<div class="panel panel-default" ng-controller='WeatherController' ng-cloak>
 		<!-- Default panel contents -->
 	 	<div class="panel-heading">
@@ -98,17 +91,20 @@
 	  		</thead>
 	  		<tbody>
 			<tr ng-repeat='data in dayCast'>
-				<td>星期{{data.week}}</td>
+				<td>{{data.week}}</td>
 				<td>{{data.date}}</td>
-				<td>白天：{{data.dayweather}}，{{data.daytemp}}℃</td>
-				<td>夜间：{{data.nightweather}}，{{data.nighttemp}}℃</td>
+				<td>{{data.dayweather}}，{{data.daytemp}}℃</td>
+				<td>{{data.nightweather}}，{{data.nighttemp}}℃</td>
 			</tr>
 			</tbody>
 	  	</table>
 	 	<div class="panel-heading" id="panel-foot">
 	 		<!-- <h2 id="date">在一起 : 173天10小时56分钟10秒</h2> -->
-	 		<h1 id="date">宝贝儿你回来啦~</h1>
+	 		<h1 id="date">你回来啦~</h1>
 	 	</div>
+	 	<!-- 以下是待开发区域 -->
+	 	<div id="toDevelope"></div>
+	 	<!-- <div id="toDevelope"><img src="images/7.jpg"></div> -->
 	</div>
 
 
