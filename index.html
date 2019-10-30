@@ -1,166 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>张爽小仙女专用查天气网页</title>
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=1.0, minimum-scale=0.1">
-	<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<!-- <script src="libs/angular.min.js"></script> -->
-	<style type="text/css">
-		[ng-cloak]{display:none;}
-		#main{
-			width: 700px;
-			margin: 0px auto;
-		}
-		#weatherData{
-			margin-top: 50px;
-			border: 1px solid #000;
-		}
-		#date{
-			display: none;
-			text-align: center;
-		}
-		.panel{
-			/*width: 700px;*/
-			margin: 10px auto;
-
-		}
-		#panel-foot{
-			border-top: 1px solid #ddd;
-			border-bottom: 1px solid #ddd;
-		}
-		body{
-			background-color: hotpink;
-		}
-		table{
-			/*text-align: center;*/
-		}
-		thead{
-			    /*vertical-align: middle;*/
-		}
-		th{
-			padding-left: 30px!important;
-			text-align: center;
-			font-size: 22px;
-			height: 60px;
-
-		}
-		tbody{
-			/*padding-left: 30px!important;*/
-		}
-		td{
-			font-size: 30px;
-			line-height: 70px!important;
-			padding-left: 30px!important;
-			text-align: center;
-		}
-		#toDevelope{
-			/*margin: 10px auto;*/
-			height: 1500px;
-			background: url('images/7.jpg') no-repeat;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <title>张爽小仙女专用查天气网页</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=0.5, maximum-scale=1.0, minimum-scale=0.1">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/Swiper/4.5.1/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-<body ng-app='Weather'>
-	<div class="panel panel-default" ng-controller='WeatherController' ng-cloak>
-		<!-- Default panel contents -->
-	 	<div class="panel-heading">
-	 		<h1 style="text-align: center;">♥张爽小仙女专用查天气网页♥</h1>
-	 		<br>
-	 		<h2>当前城市：{{forecast.province}}省{{forecast.city}}
-	 		<br>查询时间：{{forecast.reporttime}}
-		 	</h2>
-	 	</div>
-		<!-- Table -->
-	  	<table class="table">
-	  		<thead>
-	  		<tr>
-	  			<th>星期</th>
-	  			<th>日期</th>
-	  			<th>白天</th>
-	  			<th>夜间</th>
-	  		</tr>
-	  		</thead>
-	  		<tbody>
-			<tr ng-repeat='data in dayCast'>
-				<td>{{data.week}}</td>
-				<td>{{data.date}}</td>
-				<td>{{data.dayweather}}，{{data.daytemp}}℃</td>
-				<td>{{data.nightweather}}，{{data.nighttemp}}℃</td>
-			</tr>
-			</tbody>
-	  	</table>
-	 	<div class="panel-heading" id="panel-foot">
-	 		<!-- <h2 id="date">在一起 : 173天10小时56分钟10秒</h2> -->
-	 		<h1 id="date">你回来啦~</h1>
-	 	</div>
-	 	<!-- 以下是待开发区域 -->
-	 	<div id="toDevelope"></div>
-	 	<!-- <div id="toDevelope"><img src="images/7.jpg"></div> -->
-	</div>
 
+<body>
+    <div ng-app='Weather'>
+        <div class="panel panel-default" ng-controller='WeatherController' ng-cloak>
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <h1>♥张爽小仙女专用查天气网页♥</h1>
+                <br>
+                <h2>当前城市：{{forecast.province}}省{{forecast.city}}
+                    <br>查询时间：{{forecast.reporttime}}
+                </h2>
+            </div>
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>星期</th>
+                        <th>日期</th>
+                        <th>白天</th>
+                        <th>夜间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat='data in dayCast'>
+                        <td>{{data.week}}</td>
+                        <td>{{data.date}}</td>
+                        <td>{{data.dayweather}}，{{data.daytemp}}℃</td>
+                        <td>{{data.nightweather}}，{{data.nighttemp}}℃</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="panel-heading" id="panel-foot">
+                <!-- <h2 id="date">在一起 : 173天10小时56分钟10秒</h2> -->
+                <h1 id="date">你回来啦~</h1>
+            </div>
+        </div>
+    </div>
+    <div class="pics">
+        <div class="photo-swiper swiper-container">
+            <ul class="swiper-wrapper">
+                <li class="swiper-slide"><img src="./images/1.jpg" alt=""></li>
+                <li class="swiper-slide"><img src="./images/2.jpg" alt=""></li>
+                <li class="swiper-slide"><img src="./images/3.jpg" alt=""></li>
+                <li class="swiper-slide"><img src="./images/4.jpg" alt=""></li>
+                <li class="swiper-slide"><img src="./images/5.jpg" alt=""></li>
+                <li class="swiper-slide"><img src="./images/6.jpg" alt=""></li>
+                <li class="swiper-slide"><img src="./images/7.jpg" alt=""></li>
+                <li class="swiper-slide"><img src="./images/8.jpg" alt=""></li>
+                <li class="swiper-slide"><img src="./images/9.jpg" alt=""></li>
+                <li class="swiper-slide"><img src="./images/10.jpg" alt=""></li>
+            </ul>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
 
+    <script src="https://cdn.bootcss.com/Swiper/4.5.1/js/swiper.min.js"></script>
+    <script src="libs/angular.min.js"></script>
+    <!-- 获取天气数据 -->
+    <script type="text/javascript">
+        var swiper1 = new Swiper(".photo-swiper", {
+            loop: true,
+            autoplay: {
+                delay: 2000,
+                disableOnInteraction: false,
+                // reverseDirection: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '">' + (index + 1) + '</span>';
+                },
+            },
+        });
+        var Weather = angular.module('Weather', []);
+        Weather.controller('WeatherController', ['$scope', '$http', function ($scope, $http) {
+            $http({
+                url: 'https://restapi.amap.com/v3/weather/weatherInfo?',
+                method: 'jsonp',
+                params: {
+                    callback: 'JSON_CALLBACK',
+                    key: '32913491246307ff392d69a91b1fd650',
+                    city: '222401',//222401延吉市，220822通榆县
+                    extensions: 'all'
+                }
+            }).success(function (info) {
+                console.log(info);
+                $scope.forecast = info.forecasts[0];
+                $scope.dayCast = $scope.forecast.casts;//4个元素的数组
+            });
+        }]);
+    </script>
+    <!-- 在一起时间 -->
+    <script type="text/javascript">
+        var date = document.querySelector('#date');
+        window.onload = function () {
+            setInterval('conTime()', 1000);
+        };
 
-
-	<script src="libs/angular.min.js"></script>
-	<script type="text/javascript">
-		var Weather = angular.module('Weather',[]);
-		Weather.controller('WeatherController',['$scope','$http',function($scope,$http){
-			$http({
-				url:'https://restapi.amap.com/v3/weather/weatherInfo?',
-				method:'jsonp',
-				params:{
-					callback:'JSON_CALLBACK',
-					key:'32913491246307ff392d69a91b1fd650',
-					city:'222401',//222401延吉市，220822通榆县
-					extensions:'all'
-				}
-			}).success(function(info){
-				console.log(info);
-				$scope.forecast = info.forecasts[0];
-				$scope.dayCast = $scope.forecast.casts;//4个元素的数组
-			});
-		}]);
-	</script>
-	<script type="text/javascript">
-		var date = document.querySelector('#date');
-		date.style.display = 'block';
-		window.onload = setInterval('conTime()',1000);
-	    function conTime() {
-	        var today = new Date();
-	        var dayStart = new Date(2019, 1, 23, 8, 0, 0);
-	        var dayDiff = today - dayStart;//时间差的毫秒值
-	        //天
-	        var conDay = Math.floor(dayDiff / 3600 / 24 / 1000);
-	        //小时
-	        var conH = Math.floor(dayDiff % (3600 * 24 * 1000) / (1000 * 3600));
-	        //分钟
-	        var conMin = Math.floor(dayDiff % (3600 * 1000) / (1000 * 60));
-	        //秒
-	        var conSec = Math.floor(dayDiff % (60 * 1000) / 1000);
-	        conDay=checkTime(conDay);
-	        conH=checkTime(conH);
-	        conMin=checkTime(conMin);
-	        conSec=checkTime(conSec);
-	        var conTime = conDay + '天' + conH + '小时' + conMin + '分钟' + conSec + '秒';
-	        date.innerHTML = '在一起 : '+conTime;
-	        date.style.color='#FF4040';
-//        alert('111');
-	    }
-	    function checkTime(i)
-	    {
-	        if (i<10)
-	        {i="0" + i}
-	        return i
-	    }
-	</script>
+        function conTime() {
+            var today = new Date();
+            var dayStart = new Date(2019, 1, 23, 8, 0, 0);
+            var dayDiff = today - dayStart;//时间差的毫秒值
+            //天
+            var conDay = Math.floor(dayDiff / 3600 / 24 / 1000);
+            //小时
+            var conH = Math.floor(dayDiff % (3600 * 24 * 1000) / (1000 * 3600));
+            //分钟
+            var conMin = Math.floor(dayDiff % (3600 * 1000) / (1000 * 60));
+            //秒
+            var conSec = Math.floor(dayDiff % (60 * 1000) / 1000);
+            conDay = checkTime(conDay);
+            conH = checkTime(conH);
+            conMin = checkTime(conMin);
+            conSec = checkTime(conSec);
+            var conTime = conDay + '天' + conH + '小时' + conMin + '分钟' + conSec + '秒';
+            date.innerHTML = '在一起 : ' + conTime;
+        }
+        function checkTime(i) {
+            if (i < 10) { i = "0" + i }
+            return i
+        }
+    </script>
 </body>
+
 </html>
